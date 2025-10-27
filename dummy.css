@@ -1,0 +1,136 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+header, section, footer {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Selectors demo */
+.selector-demo p {
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+.highlight {
+  background-color: #d1fae5;
+}
+
+#unique {
+  background-color: #fee2e2;
+}
+
+/* Color & Background examples  => */
+.color-box {
+  width: 120px;
+  height: 80px;
+  color: white;
+  text-align: center;
+  line-height: 80px;
+  margin: 5px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.red { background-color: red; }
+.green { background-color: green; }
+.gradient {
+  background: linear-gradient(45deg, orange, pink);
+}
+
+/* Box model =>  */
+.box-model {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid #4ade80;
+  margin: 20px;
+  background-color: #f0fdf4;
+  text-align: center;
+}
+
+/* Layout using Flexbox =>  */
+.layout-demo {
+  display: flex;
+  gap: 10px;
+}
+
+.layout-demo .item {
+  background-color: #bfdbfe;
+  padding: 20px;
+  border-radius: 6px;
+  flex: 1;
+  text-align: center;
+}
+
+/* Flexbox example =>  */
+.flex-demo {
+  display: flex;
+  gap: 10px;
+}
+
+.flex-demo div {
+  background: #facc15;
+  padding: 20px;
+  border-radius: 6px;
+  flex: 1;
+  text-align: center;
+}
+
+/* Grid example  => */
+.grid-demo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.grid-demo div {
+  background: #a5b4fc;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Transform & Animation */
+.transform-box {
+  width: 120px;
+  height: 120px;
+  background: #60a5fa;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.transform-box:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  gap: 10px;
+  background-color: #1e3a8a;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.navbar a:hover {
+  background-color: #2563eb;
+}
