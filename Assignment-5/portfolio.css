@@ -1,0 +1,179 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3f4f6;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #0c0950;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 5%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.8rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2em;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffd700;
+}
+
+.about-heading {
+  text-align: center;
+  color: #0c0950;
+  margin-bottom: 2rem;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6em 2em 2em 2em;
+}
+
+.intro {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 1000px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 1.5em;
+}
+
+.bio {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #000000;
+}
+
+footer {
+  background-color: #0c0950;
+  color: white;
+  text-align: center;
+  padding: 1em;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.skills-heading {
+  text-align: center;
+  color: #0c0950;
+  margin-bottom: 2rem;
+}
+
+.technical-skills {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+  width: 800px;
+  margin: 0 auto 2rem auto;
+}
+
+.technical-skills div {
+  border: #ffffff solid 2px;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.technical-skills .red {
+  background-color: #ef4444;
+}
+
+.technical-skills .blue {
+  background-color: #3b82f6;
+}
+
+.technical-skills .yellow {
+  background-color: #eab308;
+}
+
+.technical-skills .green {
+  background-color: #10b981;
+}
+
+.technical-skills .purple {
+  background-color: #8b5cf6;
+}
+
+.technical-skills .orange {
+  background-color: #f97316;
+}
+
+.technical-skills .brown {
+  background-color: #a0522d;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  width: 800px;
+  margin: 0 auto 2rem auto;
+  background-color: #ffe100;
+  border: #ffffff solid 2px;
+  padding: 1rem;
+  color: #ffffff;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+@media (max-width: 600px) {
+  .nav-links {
+    gap: 1em;
+  }
+
+  .intro {
+    padding: 1.5rem;
+  }
+
+  .bio {
+    font-size: 1rem;
+  }
+}
