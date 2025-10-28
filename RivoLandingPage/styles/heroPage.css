@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #C2EFD4;
+    color: #224F34;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 80px;
+}
+
+.logo {
+    font-size: 32px;
+    font-family: 'Elephant', sans-serif;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #224F34;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-btn {
+    border: 1px solid #224F34;
+    background: transparent;
+    padding: 8px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 80px;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 76px;
+    font-family: 'Rufina', serif;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 20px;
+    color: #267D49;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.explore-btn {
+    background-color: #224F34;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.hero-image .image-bg {
+    width: 200px;
+    height: 400px;
+    margin-right: 200px;
+    position: relative;
+}
+
+.hero-image img {
+    width: 280px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    padding: 20px;
+}

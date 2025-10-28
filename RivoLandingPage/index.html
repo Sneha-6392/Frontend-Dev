@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Rivo landing page</title>
+</head>
+<body>
+    <div id="hero-page"></div>
+    <script>
+        fetch('/Frontend-Dev/RivoLandingPage/components/heroPage.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('hero-page').innerHTML = data);
+    </script>
+    
+    <div id="best-selling"></div>
+    <script>
+      fetch('/Frontend-Dev/RivoLandingPage/components/bestSelling.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('best-selling').innerHTML = data);
+    </script>
+</body>
+</html>

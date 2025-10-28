@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight:bold;
+}
+
+.best-selling-products {
+    background-color: #F9F9F9;
+    padding: 50px 80px;
+    text-align: center;
+}
+
+.best-selling-products h1 {
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    color: #224F34;
+}
+
+.best-selling-products p {
+    text-align: center;
+    margin: 10px 0 30px 0;
+    font-size: 18px;
+    color: #224F34;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.items img {
+    width: 300px;
+    height: 400px;
+}
+
+.items div {
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    margin: 15px 0 10px 0;
+}
+
+.see-more-btn {
+    border: 1px solid #224F34;
+    background: transparent;
+    padding: 8px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 500;
+}
