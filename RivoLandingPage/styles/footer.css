@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer {
+  background-color: #224f34;
+  color: #eaf4ec;
+  padding: 80px 100px 40px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-logo {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  font-family: 'Elephant', sans-serif;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #eaf4ec;
+  opacity: 0.9;
+  transition: 0.3s;
+}
+
+.footer-column ul li a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a {
+  color: #eaf4ec;
+  font-size: 20px;
+  margin-right: 15px;
+  border: 1px solid #eaf4ec;
+  border-radius: 6px;
+  padding: 8px 10px;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.social-icons a:hover {
+  background-color: #c2efd4;
+  color: #224f34;
+}
+
+.newsletter {
+  display: flex;
+  border: 1px solid #c2efd4;
+  margin-top: 10px;
+  width: 350px;
+  height: 45px;
+}
+
+.newsletter input {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #fff;
+  font-size: 15px;
+}
+
+.newsletter button {
+  background-color: #c2efd4;
+  color: #224f34;
+  border: none;
+  padding: 0 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.newsletter button:hover {
+  background-color: #a4e0be;
+}
+
+.footer-bottom {
+  margin-top: 60px;
+}
+
+.footer-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.footer-line hr {
+  flex: 1;
+  border: none;
+  height: 1px;
+  background-color: #a4e0be;
+}
+
+.bottom-links {
+    margin-top: 10px;
+  display: flex;
+  gap: 40px;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.bottom-links a {
+  color: #eaf4ec;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.bottom-links a:hover {
+  color: #c2efd4;
+}
+
+@media (max-width: 900px) {
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .bottom-links {
+    justify-content: center;
+    padding-right: 0;
+  }
+
+  .footer {
+    padding: 60px 40px;
+  }
+}

@@ -41,5 +41,12 @@
         .then(res => res.text())
         .then(data => document.getElementById('feedback').innerHTML = data);
     </script>
+
+    <div id="footer"></div>
+    <script>
+        fetch('/Frontend-Dev/RivoLandingPage/components/footer.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
 </body>
 </html>
