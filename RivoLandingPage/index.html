@@ -20,5 +20,12 @@
       .then(res => res.text())
       .then(data => document.getElementById('best-selling').innerHTML = data);
     </script>
+
+    <div id="product-page"></div>
+    <script>
+        fetch('/Frontend-Dev/RivoLandingPage/components/productPage.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('product-page').innerHTML = data);
+    </script>
 </body>
 </html>
