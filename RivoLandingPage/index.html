@@ -27,5 +27,19 @@
         .then(res => res.text())
         .then(data => document.getElementById('product-page').innerHTML = data);
     </script>
+
+    <div id="catalog"></div>
+    <script>
+        fetch('/Frontend-Dev/RivoLandingPage/components/catalog.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('catalog').innerHTML = data);
+    </script>
+
+    <div id="feedback"></div>
+    <script>
+        fetch('/Frontend-Dev/RivoLandingPage/components/feedback.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('feedback').innerHTML = data);
+    </script>
 </body>
 </html>
