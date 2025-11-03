@@ -1,0 +1,44 @@
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    header, footer {
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 10;
+    }
+
+    header { top: 0; }
+    footer { bottom: 0; }
+
+    .container {
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+
+    section {
+        height: 277px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .linear {
+        background: linear-gradient(to right, #fff200, #ff6f00);
+        background-attachment: fixed;
+    }
+
+    .radial {
+        background: radial-gradient(circle, #00189e, #00f2fe);
+    }
