@@ -1,0 +1,48 @@
+body {
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.box {
+  width: 200px;
+  height: 100px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.4s ease;
+}
+.solid {
+  border: 4px solid #ffe600;
+  padding: 10px;
+}
+.dashed {
+  border: 4px dashed #0077ff;
+  padding: 20px;
+}
+.double {
+  border: 6px double #ff0000;
+  padding: 15px;
+}
+.groove {
+  border: 6px groove #00ff33;
+  padding: 25px;
+}
+.rounded-small {
+  border-radius: 10px;
+}
+.rounded-medium {
+  border-radius: 25px;
+}
+.rounded-large {
+  border-radius: 50px;
+}
+.box:hover {
+  border-color: #000000;
+}
