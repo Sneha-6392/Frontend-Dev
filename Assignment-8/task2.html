@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Selectors Practice Page</title>
+  <link rel="stylesheet" href="task2.css" />
+</head>
+<body>
+  <header>
+    <h1>CSS Selectors Practice Page</h1>
+  </header>
+
+  <section>
+    <h2>Basic Selectors</h2>
+    <p>This paragraph is styled using the <strong>element selector</strong>.</p>
+    <p class="highlight">This paragraph uses a <strong>class selector</strong>.</p>
+    <p id="special-text">This uses an <strong>ID selector</strong>.</p>
+    <a href="https://example.com" target="_blank">This link uses an attribute selector.</a>
+  </section>
+
+  <section>
+    <h2>Combinators</h2>
+
+    <div class="box">
+      <p>Inside box — <span>this span is styled by descendant selector.</span></p>
+    </div>
+
+    <ul>
+      <li>Item 1 (child of ul)</li>
+      <li>Item 2 (child of ul)</li>
+    </ul>
+
+    <h3>Heading Level 3</h3>
+    <p>This paragraph is styled by adjacent sibling selector.</p>
+
+    <p class="note">This is a note.</p>
+    <p>Styled by general sibling selector.</p>
+    <p>Also styled by general sibling selector.</p>
+  </section>
+
+  <footer>
+    <p>End of CSS Selector Practice Page</p>
+  </footer>
+</body>
+</html>

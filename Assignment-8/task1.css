@@ -1,0 +1,82 @@
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    .container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .example {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .example:hover {
+      transform: translateY(-5px);
+    }
+
+    .hover-example a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .hover-example a:hover {
+      color: #ff6600;
+    }
+    .focus-example input {
+      padding: 8px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: 0.3s;
+    }
+    .focus-example input:focus {
+      border-color: #007bff;
+      background-color: #e6f0ff;
+    }
+    .active-example button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .active-example button:active {
+      background-color: #1e7e34;
+      transform: scale(0.95);
+    }
+    .nth-child-example ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .nth-child-example li {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      background-color: #ddd;
+    }
+    .nth-child-example li:nth-child(odd) {
+      background-color: #cce5ff;
+    }
+    .nth-child-example li:nth-child(even) {
+      background-color: #d4edda;
+    }
