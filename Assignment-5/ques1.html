@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>greet user</title>
+</head>
+
+<body>
+    <script>
+        let name = prompt("Enter your name:");
+        function greetUser(name, callback) {
+            console.log(`Hello, ${name}`);
+            callback();
+        }
+        function showEndMessage() {
+            console.log("Welcome to the course!");
+        }
+        greetUser(name, showEndMessage);
+    </script>
+</body>
+
+</html>
