@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            width: 380px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form {
+            margin-bottom: 18px;
+        }
+
+        input {
+            width: 93%;
+            padding: 12px;
+            font-size: 15px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        input.valid {
+            border-color: #2ecc71;
+        }
+
+        input.invalid {
+            border-color: #e74c3c;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            font-size: 17px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+    <title> Student Form Validator (Forms + RegExp)</title>
+</head>
+<body>
+    <div class="container">
+    <h1>Student Registration Form</h1>
+    <div class="form">
+        <label>Name:</label>
+        <input type="text" id="name">
+        <p class="error" id="nameError">alphabets only</p> 
+    </div>
+    <div class="form">
+        <label>Email:</label>
+        <input type="text" id="email">
+        <p class="error" id="emailError">enter valid email (abc@example.com)</p> 
+    </div>
+    <div class="form">
+        <label>Phone:</label>
+        <input type="text" id="phone">
+        <p class="error" id="phoneError"> exactly 10 digits</p> 
+    </div>
+    <div class="form">
+        <label>Password:</label>
+        <input type="text" id="password">
+        <p class="error" id="passwordError">must contain 1 uppercase, 1 number, and 1 special character</p> 
+    </div>
+    <button onclick="validForm()">Submit</button>
+    </div>
+
+    <script>
+        function validForm() {
+            validName();
+            validEmail();
+            validPhone();
+            validPassword();
+        }
+        function validName() {
+            const name = document.getElementById("name");
+            const nameError = document.getElementById("nameError");
+            const nameRegex = /^[A-Za-z\s]+$/;
+            if (!nameRegex.test(name.value)) {
+                name.classList.add("invalid");
+                name.classList.remove("valid");
+                nameError.style.display = "block";
+            } else {
+                name.classList.add("valid");
+                name.classList.remove("invalid");
+                nameError.style.display = "none";
+            }
+        }
+        function validEmail() {
+            const email = document.getElementById("email");
+            const emailError = document.getElementById("emailError");
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.classList.add("invalid");
+                email.classList.remove("valid");
+                emailError.style.display = "block";
+            } else {
+                email.classList.add("valid");
+                email.classList.remove("invalid");
+                emailError.style.display = "none";
+            }
+        }
+        function validPhone() {
+            const phone = document.getElementById("phone");
+            const phoneError = document.getElementById("phoneError");
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone.value)) {
+                phone.classList.add("invalid");
+                phone.classList.remove("valid");
+                phoneError.style.display = "block";
+            } else {
+                phone.classList.add("valid");
+                phone.classList.remove("invalid");
+                phoneError.style.display = "none";
+            }
+        }
+        function validPassword() {
+            const password = document.getElementById("password");
+            const passwordError = document.getElementById("passwordError");
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).+$/;
+            if (!passwordRegex.test(password.value)) {
+                password.classList.add("invalid");
+                password.classList.remove("valid");
+                passwordError.style.display = "block";
+            } else {
+                password.classList.add("valid");
+                password.classList.remove("invalid");
+                passwordError.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
