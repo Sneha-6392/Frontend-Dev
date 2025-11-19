@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 30px;
+            background: #f4f7fb;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #product-input {
+            padding: 10px;
+            width: 260px;
+            border: 2px solid #d7dce4;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        #product-input:focus {
+            border-color: #6a8dff;
+            box-shadow: 0 0 5px rgba(106, 141, 255, 0.4);
+        }
+
+        #add-product-btn {
+            padding: 10px 18px;
+            margin-left: 10px;
+            background: #6a8dff;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        #add-product-btn:hover {
+            background: #5073ff;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+
+        li {
+            background: white;
+            padding: 12px 15px;
+            border: 1px solid #e1e4eb;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            transition: 0.2s;
+        }
+
+        li:hover {
+            transform: scale(1.01);
+        }
+
+        .actions button {
+            margin-left: 6px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .edit-btn {
+            background: #ffd36a;
+        }
+
+        .edit-btn:hover {
+            background: #ffbf2d;
+        }
+
+        .delete-btn {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #ff3b3b;
+        }
+
+        .edit-input {
+            width: 170px;
+            padding: 6px;
+            border: 2px solid #b8c4ff;
+            border-radius: 6px;
+            outline: none;
+        }
+    </style>
+    <title>Dynamic Product List Manager</title>
+</head>
+<body>
+    <h2>Dynamic Product List Manager</h2>
+    <input type="text" id="product-input" placeholder="Enter product name">
+    <button id="add-product-btn">Add Product</button>
+    <ul id="product-list"></ul>
+
+    <script>
+        const input = document.getElementById('product-input');
+        const addButton = document.getElementById('add-product-btn');
+        const productList = document.getElementById('product-list');
+        addButton.addEventListener('click', () => {
+            const text = input.value.trim();
+            if (!text) return;
+            addProduct(text);
+            input.value = '';
+        });
+        function addProduct(name) {
+            const li = document.createElement('li');
+            li.innerHTML = `<span class="text">${name}</span>
+                            <span class="actions">
+                                <button class="edit-btn">Edit</button>
+                                <button class="delete-btn">Delete</button>
+                            </span>`;
+            productList.appendChild(li);
+        }
+        let currentEdit = null;
+        productList.addEventListener("click", function (e) {
+            if (e.target.classList.contains("delete-btn")) {
+                e.target.closest("li").remove();
+                return;
+            }
+            if (e.target.classList.contains("edit-btn")) {
+                const li = e.target.closest("li");
+                if (currentEdit === li) return;
+                enableEditing(li);
+            }
+        });
+        function enableEditing(li) {
+            const textSpan = li.querySelector(".text");
+            const oldText = textSpan.textContent;
+            textSpan.innerHTML = `<input type="text" class="edit-input" value="${oldText}">`;
+            const input = li.querySelector(".edit-input");
+            input.focus();
+            currentEdit = li;
+            input.addEventListener("keypress", (e) => {
+                if (e.key === "Enter") saveEdit(li);
+            });
+        }
+        document.addEventListener("click", function (e) {
+            if (currentEdit && !currentEdit.contains(e.target)) {
+                saveEdit(currentEdit);
+            }
+        });
+        function saveEdit(li) {
+            const input = li.querySelector(".edit-input");
+            if (!input) return;
+            const newText = input.value.trim();
+            li.querySelector(".text").textContent = newText || "Unnamed Product";
+            currentEdit = null;
+        }
+    </script>
+</body>
+</html>
