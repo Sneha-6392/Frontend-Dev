@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi step form</title>
+    <style>
+        .step {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        input.valid {
+            border: 2px solid green;
+        }
+
+        input.invalid {
+            border: 2px solid red;
+        }
+
+        .container {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            background-color: aquamarine;
+        }
+
+        button {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!--step1-->
+        <div class="step active " id="step1">
+            <h3> Name</h3>
+            <input type="text" placeholder="Enter Name" id="name">
+            <small id="nameError" class="error"></small>
+            <button id="next1">Next</button>
+        </div>
+        <!--step2-->
+        <div class="step  " id="step2">
+            <h3> Email</h3>
+            <input type="text" placeholder="Enter Email" id="email">
+            <small id="emailError" class="error"></small>
+            <button id="back1">Back</button>
+            <button id="next2">Next</button>
+        </div>
+        <div class="step " id="step3">
+            <h3> Pasword</h3>
+            <input type="password" placeholder="Enter Password" id="password">
+            <small id="paswordError" class="error"></small>
+            <button id="back2">Back</button>
+            <button id="finish">Finish</button>
+        </div>
+        <div class="step" id="summary">
+            <h3>Summary</h3>
+            <p><strong>Name:</strong> <span id="sumName"></span></p>
+            <p><strong>Email:</strong> <span id="sumEmail"></span></p>
+            <p><strong>Password:</strong> <span id="sumPass"></span></p>
+        </div>
+
+    </div>
+    <script>
+        //steps
+        let step1 = document.getElementById("step1");
+        let step2 = document.getElementById("step2");
+        let step3 = document.getElementById("step3");
+        let summary = document.getElementById("summary");
+
+        //Inputs
+        let name = document.getElementById("name");
+        let email = document.getElementById("email");
+        let password = document.getElementById("password");
+
+        //errors
+        let nameError = document.getElementById("nameError");
+        let emailError = document.getElementById("emailError");
+        let passError = document.getElementById("paswordError");
+
+        //summary outputs
+        let sumName = document.getElementById("sumName");
+        let sumEmail = document.getElementById("sumEmail");
+        let sumPass = document.getElementById("sumPass");
+
+        //Buttons
+        let next1 = document.getElementById("next1");
+        let next2 = document.getElementById("next2");
+        let back1 = document.getElementById("back1");
+        let back2 = document.getElementById("back2");
+        let finish = document.getElementById("finish");
+
+
+        // Step 1 - NAME Validation
+        next1.addEventListener("click", function () {
+            let reg = /^[A-Za-z ]+$/;
+
+            if (!reg.test(name.value)) {
+                name.classList.add("invalid");
+                name.classList.remove("valid");
+                nameError.textContent = "Name must contain only alphabets";
+            } else {
+                name.classList.add("valid");
+                name.classList.remove("invalid");
+                nameError.textContent = "";
+                step1.classList.remove("active");
+                step2.classList.add("active");
+            }
+        });
+
+
+        // Step 2 - EMAIL Validation
+        next2.addEventListener("click", function () {
+            let emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+
+            if (!emailReg.test(email.value)) {
+                email.classList.add("invalid");
+                email.classList.remove("valid");
+                emailError.textContent = "Enter a valid email";
+            } else {
+                email.classList.add("valid");
+                email.classList.remove("invalid");
+                emailError.textContent = "";
+
+                step2.classList.remove("active");
+                step3.classList.add("active");
+            }
+        });
+
+
+        // Step 3 - PASSWORD Validation
+        finish.addEventListener("click", function () {
+            let passReg = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).+$/;
+
+            if (!passReg.test(password.value)) {
+                password.classList.add("invalid");
+                password.classList.remove("valid");
+                passError.textContent =
+                    "Must contain 1 uppercase, 1 number, and 1 special character";
+            } else {
+                password.classList.add("valid");
+                password.classList.remove("invalid");
+                passError.textContent = "";
+
+                step3.classList.remove("active");
+                summary.classList.add("active");
+
+                sumName.textContent = name.value;
+                sumEmail.textContent = email.value;
+                sumPass.textContent = password.value;
+            }
+        });
+
+
+        // Back buttons
+        back1.addEventListener("click", function () {
+            step2.classList.remove("active");
+            step1.classList.add("active");
+        });
+
+        back2.addEventListener("click", function () {
+            step3.classList.remove("active");
+            step2.classList.add("active");
+        });
+        
+    </script>
+
+</body>
+
+</html>

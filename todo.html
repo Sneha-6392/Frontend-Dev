@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TODO APP</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+            padding: 30px;
+        }
+
+        .container {
+            width: 450px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background: #fafafa;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-small {
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        .update-btn {
+            background: #ffc107;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>TODO App (CRUD + Search)</h2>
+
+        <!-- Add Task -->
+        <input type="text" id="taskInput" placeholder="Enter task...">
+        <button id="addBtn">Add</button>
+        <br><br>
+
+        <!-- Search Task -->
+        <input type="text" id="searchInput" placeholder="Search task...">
+        <button id="searchBtn">Search</button>
+
+        <ul id="todoList"></ul>
+    </div>
+
+    <script>
+        const apiURL = "http://localhost:3000/tasks"
+
+        // GET ALL TODOS
+
+        function getTodos() {
+            fetch(apiURL)
+                .then(res => res.json())
+                .then(data => displayTodos(data));
+        }
+
+        // DISPLAY TODOS
+
+        function displayTodos(todos) {
+            const list = document.getElementById("todoList");
+            list.innerHTML = "";
+
+            todos.forEach(todo => {
+                list.innerHTML += `
+            <li>
+                ${todo.task}
+                <div>
+                    <button class="btn-small update-btn" onclick="updateTodo('${todo.id}')">Update</button>
+                    <button class="btn-small delete-btn" onclick="deleteTodo('${todo.id}')">Delete</button>
+                </div>
+            </li>
+        `;
+            });
+        }
+
+        // ADD TODO
+
+        document.getElementById("addBtn").addEventListener("click", () => {
+            const task = document.getElementById("taskInput").value.trim();
+
+            if (!task) return alert("Please enter a task!");
+
+            fetch(apiURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ task })
+            })
+                .then(() => {
+                    document.getElementById("taskInput").value = "";
+                    getTodos();
+                });
+        });
+
+        // DELETE TODO
+
+        function deleteTodo(id) {
+            fetch(`${apiURL}/${id}`, { method: "DELETE" })
+                .then(() => getTodos());
+        }
+
+        // UPDATE TODO
+
+        function updateTodo(id) {
+            let newTask = prompt("Enter updated task:");
+            if (!newTask || !newTask.trim()) return;
+
+            fetch(`${apiURL}/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id, task: newTask })
+            })
+                .then(() => getTodos());
+        }
+
+        // SEARCH TODO
+
+        document.getElementById("searchBtn").addEventListener("click", () => {
+            const text = document.getElementById("searchInput").value.toLowerCase();
+
+            fetch(apiURL)
+                .then(res => res.json())
+                .then(data => {
+                    const filtered = data.filter(todo =>
+                        todo.task.toLowerCase().includes(text)
+                    );
+                    displayTodos(filtered);
+                });
+        });
+
+        // Load todos on startup
+        getTodos();
+    </script>
+
+</body>
+
+</html>
