@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            width: 450px;
+            margin: 30px auto;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid #ddd;
+            padding: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Task Manager</h2>
+
+<select id="filter">
+    <option value="">All Tasks</option>
+    <option value="low">Low Priority</option>
+    <option value="medium">Medium Priority</option>
+    <option value="high">High Priority</option>
+    <option value="completed">Completed Tasks</option>
+</select>
+
+<div id="taskList"></div>
+
+
+<script>
+const API_URL = "http://localhost:3000/tasks";
+loadTasks();
+function loadTasks(filter = "") {
+    let url = API_URL;
+
+    if (filter === "completed") {
+        url += "?completed=true";
+    } else if (filter) {
+        url += `?priority=${filter}`;
+    }
+
+    $.ajax({
+        url: url,
+        method: "GET",
+        success: function (tasks) {
+            $("#taskList").empty();
+
+            if (tasks.length === 0) {
+                $("#taskList").html("<p>No tasks found.</p>");
+                return;
+            }
+
+            tasks.forEach(task => {
+                $("#taskList").append(`
+                    <div class="task">
+                        <span class="${task.completed ? 'completed' : ''}">
+                            ${task.title} (${task.priority})
+                        </span>
+
+                        <input type="checkbox" onchange="toggleTask(${task.id}, ${task.completed})" ${task.completed ? 'checked' : ''}>
+                    </div>
+                `);
+            });
+        }
+    });
+}
+function toggleTask(id, currentStatus) {
+    $.ajax({
+        url: `${API_URL}/${id}`,
+        method: "PATCH",
+        contentType: "application/json",
+        data: JSON.stringify({ completed: !currentStatus }),
+        success: function () {
+            loadTasks($("#filter").val()); 
+        }
+    });
+}
+$("#filter").on("change", function () {
+    loadTasks($(this).val());
+});
+</script>
+
+</body>
+</html>

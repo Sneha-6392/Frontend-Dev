@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Study DSA",
+      "priority": "high",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "title": "Buy groceries",
+      "priority": "low",
+      "completed": true
+    },
+    {
+      "id": "3",
+      "title": "Finish UI Project",
+      "priority": "medium",
+      "completed": true
+    },
+    {
+      "id": "4",
+      "title": "Exercise",
+      "priority": "low",
+      "completed": false
+    }
+  ]
+}

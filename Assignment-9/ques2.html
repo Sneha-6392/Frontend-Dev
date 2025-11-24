@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Status Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 500px;
+            margin: 30px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+
+        .inactive {
+            color: red;
+            font-weight: bold;
+        }
+
+        .error {
+            background: #ffcccc;
+            border: 1px solid red;
+            color: red;
+            padding: 10px;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Employee Status Dashboard</h2>
+
+<div class="error" id="errorMessage">Something went wrong. Try again.</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Toggle</th>
+        </tr>
+    </thead>
+    <tbody id="employeeList"></tbody>
+</table>
+
+
+
+<script>
+const apiURL = "http://localhost:3000/employees";
+const employeeList = document.getElementById("employeeList");
+const errorMessage = document.getElementById("errorMessage");
+function loadEmployees() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", apiURL);
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const employees = JSON.parse(xhr.responseText);
+            displayEmployees(employees);
+        }
+    };
+
+    xhr.send();
+}
+
+function displayEmployees(list) {
+    employeeList.innerHTML = "";
+
+    list.forEach(emp => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${emp.name}</td>
+            <td class="${emp.status}">${emp.status.toUpperCase()}</td>
+            <td><button onclick="toggleStatus(${emp.id}, '${emp.status}', this)">Toggle</button></td>
+        `;
+
+        employeeList.appendChild(tr);
+    });
+}
+
+
+function toggleStatus(id, currentStatus, button) {
+    const newStatus = currentStatus === "active" ? "inactive" : "active";
+    const row = button.closest("tr");
+    const statusCell = row.querySelector("td:nth-child(2)");
+    statusCell.textContent = newStatus.toUpperCase();
+    statusCell.className = newStatus;
+    const xhr = new XMLHttpRequest();
+    xhr.open("PATCH", `${apiURL}/${id}`, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onload = function () {
+        if (xhr.status !== 200) {
+            statusCell.textContent = currentStatus.toUpperCase();
+            statusCell.className = currentStatus;
+            showError();
+        }
+    };
+
+    xhr.onerror = function () {
+        statusCell.textContent = currentStatus.toUpperCase();
+        statusCell.className = currentStatus;
+        showError();
+    };
+
+    xhr.send(JSON.stringify({ status: newStatus }));
+}
+
+function showError() {
+    errorMessage.style.display = "block";
+    setTimeout(() => {
+        errorMessage.style.display = "none";
+    }, 2000);
+}
+loadEmployees();
+</script>
+
+</body>
+</html>
